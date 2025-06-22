@@ -26,14 +26,29 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
+                        
+                        {{-- Tambahkan link dashboard, instruktur, kursus, pendaftaran, laporan di sini --}}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">Home</a>
+                            <a class="nav-link" href="{{ route('dashboard') }}" wire:navigate.off>Dashboard</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Manajemen
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('instructors.index') }}">Instruktur</a></li>
+                                <li><a class="dropdown-item" href="{{ route('courses.index') }}">Kursus</a></li>
+                                <li><a class="dropdown-item" href="{{ route('participants.index') }}">Peserta</a></li>
+                                <li><a class="dropdown-item" href="{{ route('registrations.index') }}">Pendaftaran</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Laporan
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('reports.participant_count') }}">Jumlah Peserta</a></li>
+                            </ul>
                         </li>
                     </ul>
 

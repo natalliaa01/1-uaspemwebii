@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+
+    <title><?php echo e(config('app.name', 'Laravel')); ?></title>
+
+    <!-- BAL Kit Assets -->
+    <?php echo app('Illuminate\Foundation\Vite')(['resources/sass/app.scss', 'resources/js/app.js']); ?>
+</head>
+<body class="bal-kit bg-light">
+    <div class="min-vh-100 d-flex align-items-center justify-content-center py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <!-- Logo -->
+                    <div class="text-center mb-4">
+                        <a href="/" class="text-decoration-none">
+                            <h2 class="text-primary fw-bold"><?php echo e(config('app.name', 'Laravel')); ?></h2>
+                        </a>
+                    </div>
+
+                    <!-- Auth Card -->
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <?php echo e($slot); ?>
+
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="text-center mt-4">
+                        <small class="text-muted">
+                            Powered by <span class="text-primary fw-semibold">BAL Kit</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<?php /**PATH C:\laragon\www\uaspemwebii\resources\views/layouts/guest.blade.php ENDPATH**/ ?>

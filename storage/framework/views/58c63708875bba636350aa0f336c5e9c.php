@@ -1,14 +1,14 @@
 
-    <x-slot name="header">
+     <?php $__env->slot('header', null, []); ?> 
         <h2 class="h4 mb-0">Manajemen Pendaftaran</h2>
-    </x-slot>
+     <?php $__env->endSlot(); ?>
 
     <div class="container-fluid py-4">
         <div class="card shadow">
             <div class="card-header py-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary">Daftar Pendaftaran</h6>
-                    <a href="{{ route('registrations.create') }}" class="btn btn-primary btn-sm">Tambah Pendaftaran</a>
+                    <a href="<?php echo e(route('registrations.create')); ?>" class="btn btn-primary btn-sm">Tambah Pendaftaran</a>
                 </div>
             </div>
 
@@ -22,12 +22,13 @@
                     </select>
                 </div>
 
-                @if (session()->has('success'))
+                <!--[if BLOCK]><![endif]--><?php if(session()->has('success')): ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
+                        <?php echo e(session('success')); ?>
+
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                @endif
+                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -42,30 +43,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($registrations as $registration)
+                            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $registrations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $registration): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr>
-                                    <td>{{ $registration->id }}</td>
-                                    <td>{{ $registration->course->course_name }}</td>
-                                    <td>{{ $registration->participant->name }}</td>
-                                    <td><span class="badge bg-{{ $registration->status == 'approved' ? 'success' : ($registration->status == 'pending' ? 'warning' : 'secondary') }}">{{ ucfirst($registration->status) }}</span></td>
-                                    <td>{{ $registration->created_at->format('d/m/Y H:i') }}</td>
+                                    <td><?php echo e($registration->id); ?></td>
+                                    <td><?php echo e($registration->course->course_name); ?></td>
+                                    <td><?php echo e($registration->participant->name); ?></td>
+                                    <td><span class="badge bg-<?php echo e($registration->status == 'approved' ? 'success' : ($registration->status == 'pending' ? 'warning' : 'secondary')); ?>"><?php echo e(ucfirst($registration->status)); ?></span></td>
+                                    <td><?php echo e($registration->created_at->format('d/m/Y H:i')); ?></td>
                                     <td>
-                                        <a href="{{ route('registrations.edit', $registration) }}" class="btn btn-sm btn-info">Edit</a>
-                                        <button class="btn btn-sm btn-danger" wire:click="deleteRegistration({{ $registration->id }})" wire:confirm="Anda yakin ingin menghapus pendaftaran ini?">Hapus</button>
+                                        <a href="<?php echo e(route('registrations.edit', $registration)); ?>" class="btn btn-sm btn-info">Edit</a>
+                                        <button class="btn btn-sm btn-danger" wire:click="deleteRegistration(<?php echo e($registration->id); ?>)" wire:confirm="Anda yakin ingin menghapus pendaftaran ini?">Hapus</button>
                                     </td>
                                 </tr>
-                            @empty
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                 <tr>
                                     <td colspan="6" class="text-center">Tidak ada pendaftaran ditemukan.</td>
                                 </tr>
-                            @endforelse
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                         </tbody>
                     </table>
                 </div>
 
                 <div class="mt-3">
-                    {{ $registrations->links() }}
+                    <?php echo e($registrations->links()); ?>
+
                 </div>
             </div>
         </div>
     </div>
+<?php /**PATH C:\laragon\www\uaspemwebii\resources\views/livewire/registration/index.blade.php ENDPATH**/ ?>

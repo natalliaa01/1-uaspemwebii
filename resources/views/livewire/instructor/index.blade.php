@@ -1,4 +1,4 @@
-<x-app-layout>
+
     <x-slot name="header">
         <h2 class="h4 mb-0">Manajemen Instruktur</h2>
     </x-slot>
@@ -66,4 +66,3 @@
             </div>
         </div> {{-- Penutup div card --}}
     </div>
-</x-app-layout>

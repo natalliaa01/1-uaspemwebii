@@ -18,6 +18,10 @@ use App\Livewire\Registration\Index as RegistrationIndex;
 use App\Livewire\Registration\Create as RegistrationCreate;
 use App\Livewire\Registration\Edit as RegistrationEdit;
 
+use App\Livewire\Participant\Index as ParticipantIndex;
+use App\Livewire\Participant\Create as ParticipantCreate;
+use App\Livewire\Participant\Edit as ParticipantEdit;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,4 +64,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Reports
     Route::get('/reports/participant-count', CourseParticipantCount::class)->name('reports.participant_count'); // Gunakan alias
+
+    // Participant Management (Tambahkan ini)
+    Route::get('/participants', ParticipantIndex::class)->name('participants.index');
+    Route::get('/participants/create', ParticipantCreate::class)->name('participants.create');
+    Route::get('/participants/{participant}/edit', ParticipantEdit::class)->name('participants.edit');
+
+
 });

@@ -20,9 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Aktifkan kembali baris ini
-        //Blade::anonymousComponentPaths([
-         //   resource_path('views/components'),
-       // ]);
+        // Komentari atau hapus baris ini yang menyebabkan error:
+        // Blade::anonymousComponentPaths([
+        //    resource_path('views/components'),
+        // ]);
     }
 }

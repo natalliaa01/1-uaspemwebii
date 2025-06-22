@@ -28,68 +28,83 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
+                        
+                        
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo e(url('/')); ?>">Home</a>
+                            <a class="nav-link" href="<?php echo e(route('dashboard')); ?>" wire:navigate.off>Dashboard</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Manajemen
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<?php echo e(route('instructors.index')); ?>">Instruktur</a></li>
+                                <li><a class="dropdown-item" href="<?php echo e(route('courses.index')); ?>">Kursus</a></li>
+                                <li><a class="dropdown-item" href="<?php echo e(route('participants.index')); ?>">Peserta</a></li>
+                                <li><a class="dropdown-item" href="<?php echo e(route('registrations.index')); ?>">Pendaftaran</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Laporan
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<?php echo e(route('reports.participant_count')); ?>">Jumlah Peserta</a></li>
+                            </ul>
                         </li>
                     </ul>
 
                     <ul class="navbar-nav">
-                        <!--[if BLOCK]><![endif]--><?php if(auth()->guard()->check()): ?>
+                        <?php if(auth()->guard()->check()): ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <?php echo e(Auth::user()->name); ?>
 
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <!--[if BLOCK]><![endif]--><?php if(Route::has('profile.edit')): ?>
+                                    <?php if(Route::has('profile.edit')): ?>
                                         <li><a class="dropdown-item" href="<?php echo e(route('profile.edit')); ?>">Profile</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                                    <!--[if BLOCK]><![endif]--><?php if(Route::has('logout')): ?>
+                                    <?php endif; ?>
+                                    <?php if(Route::has('logout')): ?>
                                         <li>
                                             <form method="POST" action="<?php echo e(route('logout')); ?>">
                                                 <?php echo csrf_field(); ?>
                                                 <button type="submit" class="dropdown-item">Logout</button>
                                             </form>
                                         </li>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    <?php endif; ?>
                                 </ul>
                             </li>
                         <?php else: ?>
-                            <!--[if BLOCK]><![endif]--><?php if(Route::has('login')): ?>
+                            <?php if(Route::has('login')): ?>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?php echo e(route('login')); ?>">Login</a>
                                 </li>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                            <!--[if BLOCK]><![endif]--><?php if(Route::has('register')): ?>
+                            <?php endif; ?>
+                            <?php if(Route::has('register')): ?>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?php echo e(route('register')); ?>">Register</a>
                                 </li>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
         </nav>
 
         <!-- Page Heading -->
-        <!--[if BLOCK]><![endif]--><?php if(isset($header)): ?>
+        <?php if(isset($header)): ?>
             <header class="bg-white shadow-sm">
                 <div class="container py-3">
                     <?php echo e($header); ?>
 
                 </div>
             </header>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
 
         <!-- Flash Messages -->
-        <!--[if BLOCK]><![endif]--><?php if(session('success')): ?>
+        <?php if(session('success')): ?>
             <div class="container mt-3">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <?php echo e(session('success')); ?>
@@ -97,9 +112,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
 
-        <!--[if BLOCK]><![endif]--><?php if(session('error')): ?>
+        <?php if(session('error')): ?>
             <div class="container mt-3">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <?php echo e(session('error')); ?>
@@ -107,20 +122,20 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
 
-        <!--[if BLOCK]><![endif]--><?php if($errors->any()): ?>
+        <?php if($errors->any()): ?>
             <div class="container mt-3">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <ul class="mb-0">
-                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li><?php echo e($error); ?></li>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
 
         <!-- Page Content -->
         <main class="flex-grow-1">
